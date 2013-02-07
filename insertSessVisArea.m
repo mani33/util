@@ -25,12 +25,15 @@ if isempty(args.visualAreas)
     const = fetch(flevbl.StimConstants(fleStimSessKeys),'*');
     nSess = length(const);
     for iSess = 1:nSess
-        tuple = fetch(acq.Sessions(fleStimSessKeys(iSess)));
-        if const(iSess).bar_size_y < 140
-            tuple.v1 = true;
-        else
-            tuple.v2 = true;
+        key = fleStimSessKeys(iSess);
+        if count(sess.VisArea(key))==0
+            tuple = fetch(acq.Sessions(key));
+            if const(iSess).bar_size_y < 140
+                tuple.vis_area_num = 1;
+            else
+                tuple.vis_area_num = 2;
+            end
+            insert(sess.VisArea,tuple);
         end
-        insert(sess.VisArea,tuple);
     end
 end
