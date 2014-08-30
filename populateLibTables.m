@@ -2,7 +2,7 @@ function [fk es] = populateLibTables(sessKey)
 
 dp = fetch(detect.Params(sessKey) * sort.Methods('sort_method_name=''MultiUnit'''),'sort_method_num');
 %%
-insert(sort.Params,dp)
+inserti(sort.Params,dp)
 spkey = dp;
 %% now populate sort.Sets table
 populate(sort.Sets,spkey)
